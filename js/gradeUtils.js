@@ -78,6 +78,6 @@ export function getTopStudent(students) {
   return students.reduce((topStudent, student) =>
     calculateFinalGrade(student) > calculateFinalGrade(topStudent)
       ? student
-      : topStudent
+      : topStuden
   );
 }
