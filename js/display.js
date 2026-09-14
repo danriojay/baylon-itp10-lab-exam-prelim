@@ -26,6 +26,7 @@ export function displayStudents(students) {
 
   students.forEach((student) => {
     const { id, name, block, quiz, lab, exam } = student;
+
     const finalGrade = calculateFinalGrade(student);
     const academicStatus = getAcademicStatus(finalGrade);
     const performanceRemark = getPerformanceRemark(finalGrade);
@@ -34,49 +35,85 @@ export function displayStudents(students) {
     card.className = "student-card";
     card.dataset.studentId = id;
 
-    const heading = document.createElement("h3");
-    heading.textContent = name;
+    // Student details and final grade.
+    const cardHeader = document.createElement("div");
+    cardHeader.className = "card-header";
 
-    const blockText = document.createElement("p");
-    blockText.className = "student-block";
-    blockText.textContent = block;
+    const studentInfo = document.createElement("div");
+    studentInfo.className = "student-info";
 
-    const scores = document.createElement("dl");
-    const scoreDetails = [
+    const studentName = document.createElement("h3");
+    studentName.className = "student-name";
+    studentName.textContent = name;
+
+    const studentBlock = document.createElement("p");
+    studentBlock.className = "student-block";
+    studentBlock.textContent = block;
+
+    studentInfo.append(studentName, studentBlock);
+
+    const gradeDisplay = document.createElement("div");
+    gradeDisplay.className = "grade-display";
+
+    const gradeValue = document.createElement("span");
+    gradeValue.className = "grade-value";
+    gradeValue.textContent = finalGrade.toFixed(2);
+
+    const gradeLabel = document.createElement("span");
+    gradeLabel.className = "grade-label";
+    gradeLabel.textContent = "Final Grade";
+
+    gradeDisplay.append(gradeValue, gradeLabel);
+    cardHeader.append(studentInfo, gradeDisplay);
+
+    // Display the three component scores in columns.
+    const componentScores = document.createElement("dl");
+    componentScores.className = "component-scores";
+
+    const scores = [
       ["Quiz", quiz],
       ["Laboratory", lab],
-      ["Prelim Exam", exam],
-      ["Final Grade", finalGrade.toFixed(2)]
+      ["Exam", exam]
     ];
 
-    scoreDetails.forEach(([label, value]) => {
-      const row = document.createElement("div");
-      row.className = "score-row";
+    scores.forEach(([label, value]) => {
+      const score = document.createElement("div");
+      score.className = "component-score";
 
-      if (label === "Final Grade") {
-        row.classList.add("final-grade");
-      }
+      const scoreLabel = document.createElement("dt");
+      scoreLabel.textContent = label;
 
-      const term = document.createElement("dt");
-      term.textContent = label;
+      const scoreValue = document.createElement("dd");
+      scoreValue.textContent = value;
 
-      const description = document.createElement("dd");
-      description.textContent = value;
-
-      row.append(term, description);
-      scores.append(row);
+      score.append(scoreLabel, scoreValue);
+      componentScores.append(score);
     });
 
+    // Academic status and performance remark.
+    const cardFooter = document.createElement("div");
+    cardFooter.className = "card-footer";
+
     const status = document.createElement("p");
-    const statusClass = academicStatus.toLowerCase().replaceAll(" ", "-");
-    status.className = `status status-${statusClass}`;
-    status.textContent = academicStatus;
+    status.className = "status";
+
+    const statusLabel = document.createElement("span");
+    statusLabel.className = "sr-only";
+    statusLabel.textContent = "Academic status: ";
+
+    status.append(statusLabel, academicStatus);
 
     const remark = document.createElement("p");
     remark.className = "remark";
-    remark.textContent = `Performance Remark: ${performanceRemark}`;
 
-    card.append(heading, blockText, scores, status, remark);
+    const remarkLabel = document.createElement("span");
+    remarkLabel.className = "sr-only";
+    remarkLabel.textContent = "Performance remark: ";
+
+    remark.append(remarkLabel, performanceRemark);
+    cardFooter.append(status, remark);
+
+    card.append(cardHeader, componentScores, cardFooter);
     fragment.append(card);
   });
 
