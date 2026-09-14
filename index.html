@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Performance Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="container">
+    <header>
+      <p class="eyebrow">PRELIM GRADE MONITOR</p>
+      <h1>Student Performance Dashboard</h1>
+      <p>Quiz 25% · Laboratory 35% · Prelim Exam 40%</p>
+    </header>
+
+    <section class="filters" aria-label="Student filters">
+      <div class="field">
+        <label for="searchInput">Search student</label>
+        <input
+          type="search"
+          id="searchInput"
+          placeholder="Enter student name"
+        >
+      </div>
+
+      <div class="field">
+        <label for="blockFilter">Block</label>
+        <select id="blockFilter">
+          <option value="All">All</option>
+          <option value="31-ITE-01">31-ITE-01</option>
+          <option value="31-ITE-02">31-ITE-02</option>
+          <option value="31-ITE-03">31-ITE-03</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="statusFilter">Academic status</label>
+        <select id="statusFilter">
+          <option value="All">All</option>
+          <option value="Excellent">Excellent</option>
+          <option value="Passed">Passed</option>
+          <option value="Needs Improvement">Needs Improvement</option>
+          <option value="Failed">Failed</option>
+        </select>
+      </div>
+
+      <button type="button" id="applyBtn">Apply Filters</button>
+      <button type="button" id="resetBtn">Reset</button>
+    </section>
+
+    <section class="summary" aria-label="Current results summary">
+      <article class="summary-card">
+        <h2>Class Average</h2>
+        <span id="classAverage"></span>
+      </article>
+
+      <article class="summary-card">
+        <h2>Passing Students</h2>
+        <span id="passingCount"></span>
+      </article>
+
+      <article class="summary-card">
+        <h2>Total Displayed Students</h2>
+        <span id="displayedCount"></span>
+      </article>
+
+      <article class="summary-card">
+        <h2>Top Student</h2>
+        <span id="topStudent"></span>
+      </article>
+    </section>
+
+    <div id="messageArea" role="status" aria-live="polite"></div>
+
+    <section aria-labelledby="recordsHeading">
+      <h2 id="recordsHeading">Student Records</h2>
+      <div id="studentList"></div>
+    </section>
+  </main>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
