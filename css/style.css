@@ -2,14 +2,11 @@
   font-family: Arial, Helvetica, sans-serif;
   color: #171717;
   background: #fafafa;
-  font-synthesis: none;
   line-height: 1.5;
 
-  --background: #fafafa;
-  --surface: #ffffff;
   --text: #171717;
-  --muted: #666666;
-  --border: #e2e2e2;
+  --muted: #666;
+  --border: #dedede;
 }
 
 * {
@@ -21,15 +18,15 @@ body {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1120px;
   margin: 0 auto;
-  padding: 60px 28px;
+  padding: 56px 28px;
 }
 
 /* Header */
 
 header {
-  margin-bottom: 48px;
+  margin-bottom: 42px;
   text-align: center;
 }
 
@@ -37,27 +34,24 @@ header .eyebrow {
   margin: 0 0 14px;
   color: var(--muted);
   font-size: 0.6875rem;
-  font-weight: 500;
   letter-spacing: 0.2em;
-  text-transform: uppercase;
 }
 
 header h1 {
   margin: 0;
-  font-size: clamp(1.8rem, 4vw, 2.7rem);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
   font-weight: 500;
-  line-height: 1.15;
-  letter-spacing: -0.055em;
+  line-height: 1.2;
+  letter-spacing: -0.05em;
 }
 
 header > p:last-child {
-  margin: 18px 0 0;
+  margin: 16px 0 0;
   color: var(--muted);
   font-size: 0.75rem;
-  letter-spacing: 0.025em;
 }
 
-/* Search and filters */
+/* Filters */
 
 .filters {
   display: flex;
@@ -80,11 +74,10 @@ header > p:last-child {
 
 label {
   display: block;
-  margin-bottom: 9px;
+  margin-bottom: 8px;
   color: var(--muted);
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
@@ -102,45 +95,39 @@ select {
   width: 100%;
   padding: 11px 12px;
   color: var(--text);
-  background: var(--surface);
-  border: 1px solid #cccccc;
+  background: white;
+  border: 1px solid #ccc;
 }
 
 input::placeholder {
   color: #757575;
 }
 
-select {
+select,
+button {
   cursor: pointer;
 }
 
 button {
-  padding: 11px 22px;
+  padding: 11px 20px;
   color: white;
   background: var(--text);
   border: 1px solid var(--text);
-  font-weight: 500;
   white-space: nowrap;
-  cursor: pointer;
-  transition:
-    background-color 150ms ease,
-    border-color 150ms ease;
 }
 
 button:hover {
   background: #383838;
-  border-color: #383838;
 }
 
 #resetBtn {
   color: var(--text);
   background: transparent;
-  border-color: #cccccc;
+  border-color: #ccc;
 }
 
 #resetBtn:hover {
-  background: #eeeeee;
-  border-color: #999999;
+  background: #eee;
 }
 
 :focus-visible {
@@ -153,14 +140,14 @@ button:hover {
 .summary {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin: 0 0 42px;
-  padding: 30px 0;
+  margin-bottom: 40px;
+  padding: 28px 0;
   border-bottom: 1px solid var(--border);
 }
 
 .summary-card {
   min-width: 0;
-  padding: 0 24px;
+  padding: 0 22px;
   border-right: 1px solid var(--border);
 }
 
@@ -174,167 +161,176 @@ button:hover {
 }
 
 .summary-card h2 {
-  margin: 0 0 14px;
+  margin: 0 0 12px;
   color: var(--muted);
   font-size: 0.625rem;
-  font-weight: 500;
-  letter-spacing: 0.09em;
+  font-weight: 400;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .summary-card span {
   display: block;
   font-size: 2rem;
-  font-weight: 400;
   line-height: 1.2;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.04em;
   font-variant-numeric: tabular-nums;
 }
 
 #topStudent {
-  padding-top: 5px;
   font-size: 1rem;
   line-height: 1.5;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
   overflow-wrap: anywhere;
 }
 
-/* Student records */
+/* Student grid */
 
 #recordsHeading {
   margin: 0 0 20px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
 #studentList {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+  gap: 20px;
 }
 
+/* Student cards */
+
 .student-card {
+  display: flex;
+  flex-direction: column;
   min-width: 0;
   padding: 28px;
-  background: var(--surface);
+  background: white;
   border: 1px solid var(--border);
 }
 
-.student-card h3 {
-  margin: 0 0 6px;
-  font-size: 1.0625rem;
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.student-info {
+  min-width: 0;
+}
+
+.student-name {
+  margin: 0 0 7px;
+  font-size: 1.125rem;
   font-weight: 500;
   line-height: 1.35;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.03em;
   overflow-wrap: anywhere;
 }
 
 .student-block {
-  margin: 0 0 28px;
-  color: var(--muted);
-  font-size: 0.6875rem;
-  letter-spacing: 0.08em;
-}
-
-.student-card dl {
   margin: 0;
-}
-
-.score-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 8px 0;
-}
-
-.score-row dt {
   color: var(--muted);
-  font-size: 0.75rem;
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
 }
 
-.score-row dd {
-  margin: 0;
-  font-size: 0.8125rem;
-  font-weight: 400;
+.grade-display {
+  flex-shrink: 0;
   text-align: right;
+}
+
+.grade-value {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.06em;
   font-variant-numeric: tabular-nums;
 }
 
-.final-grade {
-  margin-top: 14px;
+.grade-label {
+  display: block;
+  margin-top: 9px;
+  color: var(--muted);
+  font-size: 0.5625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Three component scores */
+
+.component-scores {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 32px 0 24px;
+}
+
+.component-score {
+  min-width: 0;
+  padding-left: 16px;
+  border-left: 1px solid var(--border);
+}
+
+.component-score:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.component-score dt {
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 0.5625rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.component-score dd {
+  margin: 0;
+  font-size: 1.125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Status and remark */
+
+.card-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+  margin-top: auto;
   padding-top: 18px;
   border-top: 1px solid var(--border);
 }
 
-.final-grade dt {
+.status {
+  margin: 0;
   color: var(--text);
   font-size: 0.625rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.final-grade dd {
-  font-size: 2rem;
-  line-height: 1.2;
-  letter-spacing: -0.055em;
-}
-
-.status {
-  display: inline-block;
-  margin: 22px 0 10px;
-  padding: 5px 8px;
-  color: #333333;
-  background: #f3f3f3;
-  border: 1px solid #e8e8e8;
-  font-size: 0.625rem;
   font-weight: 500;
-  line-height: 1.5;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
-}
-
-.status-excellent {
-  color: white;
-  background: #202020;
-  border-color: #202020;
-}
-
-.status-passed {
-  color: #333333;
-  background: #f1f1f1;
-  border-color: #e5e5e5;
-}
-
-.status-needs-improvement {
-  color: #444444;
-  background: white;
-  border-color: #aaaaaa;
-}
-
-.status-failed {
-  color: #171717;
-  background: white;
-  border-color: #555555;
-  border-style: dashed;
 }
 
 .remark {
   margin: 0;
   color: var(--muted);
   font-size: 0.6875rem;
-  line-height: 1.6;
 }
 
 /* Empty state */
 
 #messageArea {
-  margin: 0 0 28px;
-  padding: 48px 20px;
+  margin-bottom: 28px;
+  padding: 44px 20px;
   color: var(--muted);
-  background: var(--surface);
+  background: white;
   border: 1px solid var(--border);
   font-size: 0.875rem;
   text-align: center;
@@ -344,52 +340,49 @@ button:hover {
   display: none;
 }
 
+/* Accessible labels without extra visible text */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* Tablet */
 
 @media (max-width: 900px) {
-  .container {
-    padding: 44px 24px;
-  }
-
   .field:first-child {
     flex-basis: 100%;
   }
 
-  #studentList {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .summary-card {
-    padding: 0 16px;
-  }
-
-  .summary-card h2 {
-    min-height: 30px;
+    padding: 0 14px;
   }
 
   .student-card {
-    padding: 24px;
+    padding: 22px;
+  }
+
+  .grade-value {
+    font-size: 2.125rem;
   }
 }
 
 /* Mobile */
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
   .container {
     padding: 36px 18px;
   }
 
   header {
-    margin-bottom: 32px;
-  }
-
-  header h1 {
-    max-width: 340px;
-    margin: 0 auto;
-  }
-
-  header > p:last-child {
-    font-size: 0.6875rem;
+    margin-bottom: 30px;
   }
 
   .field {
@@ -402,13 +395,8 @@ button:hover {
 
   .summary {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    row-gap: 24px;
+    row-gap: 26px;
     margin-bottom: 30px;
-    padding: 24px 0;
-  }
-
-  .summary-card {
-    padding: 0 16px;
   }
 
   .summary-card:nth-child(odd) {
@@ -420,32 +408,20 @@ button:hover {
     border-right: 0;
   }
 
-  .summary-card h2 {
-    min-height: 0;
-    margin-bottom: 10px;
-  }
-
-  .summary-card span {
-    font-size: 1.75rem;
-  }
-
-  #topStudent {
-    padding-top: 0;
-    font-size: 0.875rem;
-  }
-
   #studentList {
     grid-template-columns: 1fr;
-    gap: 14px;
+    gap: 16px;
   }
 
-  .student-card {
-    padding: 24px;
+  .card-header {
+    gap: 12px;
   }
-}
 
-@media (prefers-reduced-motion: reduce) {
-  button {
-    transition: none;
+  .student-name {
+    font-size: 1rem;
+  }
+
+  .component-score {
+    padding-left: 10px;
   }
 }
